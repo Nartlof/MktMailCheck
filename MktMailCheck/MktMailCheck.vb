@@ -83,6 +83,40 @@ Public Class MktMailCheck
             End Try
         End If
     End Sub
+
+    Private Sub EmailsToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles EmailsToolStripMenuItem2.Click
+        If SaveCsvFileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Try
+                If SaveCsvFileDialog.FileName <> "" Then
+                    Dim StLable As ToolStripItem = BarraDeStatus.Items.Item(1)
+                    Dim Exportados As Integer = 0
+                    BarraDeStatus.Items.Item(0).Text = "Exportando:"
+                    StLable.Text = ""
+                    Using Conn As New OleDbConnection(ConnectionString)
+                        Using Comm As New OleDbCommand("Select Email from EmailTable order by Email", Conn)
+                            Using ExpFile As New FileStream(SaveCsvFileDialog.FileName, FileMode.Create)
+                                Using Writer As New StreamWriter(ExpFile)
+                                    Dim Reader As OleDbDataReader
+                                    Conn.Open()
+                                    Reader = Comm.ExecuteReader
+                                    While Reader.Read
+                                        Writer.WriteLine(Reader.Item("Email"))
+                                        Exportados += 1
+                                        StLable.Text = String.Format("{0} endereços exportados", Exportados)
+                                    End While
+                                    Writer.Flush()
+                                    Conn.Close()
+                                End Using
+                            End Using
+                        End Using
+                    End Using
+                End If
+            Catch Ex As Exception
+                MessageBox.Show("Erro ao ler o arquivo: " & Ex.Message)
+            End Try
+        End If
+    End Sub
+
 #End Region
 
 #Region "Rotinas de suporte"
@@ -174,8 +208,6 @@ Public Class MktMailCheck
             End Using
         End Using
     End Sub
-
-
 
 #End Region
 

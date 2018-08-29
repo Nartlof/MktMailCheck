@@ -38,6 +38,7 @@ Partial Class MktMailCheck
         Me.BarraDeStatus = New System.Windows.Forms.StatusStrip()
         Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ProgressoLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.EmailsToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MktMailCheckMenuStrip.SuspendLayout()
         Me.BarraDeStatus.SuspendLayout()
         Me.SuspendLayout()
@@ -109,6 +110,7 @@ Partial Class MktMailCheck
         '
         'ExportarToolStripMenuItem
         '
+        Me.ExportarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmailsToolStripMenuItem2})
         Me.ExportarToolStripMenuItem.Name = "ExportarToolStripMenuItem"
         Me.ExportarToolStripMenuItem.Size = New System.Drawing.Size(62, 20)
         Me.ExportarToolStripMenuItem.Text = "E&xportar"
@@ -126,7 +128,6 @@ Partial Class MktMailCheck
         '
         'SaveCsvFileDialog
         '
-        Me.SaveCsvFileDialog.CheckFileExists = True
         Me.SaveCsvFileDialog.Filter = "Arquivo CSV *.csv|*.csv|Arquvos de texto *.txt|*.txt|Todos os arquivos *.*|*.*"
         Me.SaveCsvFileDialog.RestoreDirectory = True
         '
@@ -149,6 +150,12 @@ Partial Class MktMailCheck
         Me.ProgressoLabel.Name = "ProgressoLabel"
         Me.ProgressoLabel.Size = New System.Drawing.Size(10, 17)
         Me.ProgressoLabel.Text = ":"
+        '
+        'EmailsToolStripMenuItem2
+        '
+        Me.EmailsToolStripMenuItem2.Name = "EmailsToolStripMenuItem2"
+        Me.EmailsToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+        Me.EmailsToolStripMenuItem2.Text = "&Emails"
         '
         'MktMailCheck
         '
@@ -186,4 +193,5 @@ Partial Class MktMailCheck
     Friend WithEvents BarraDeStatus As StatusStrip
     Friend WithEvents StatusLabel As ToolStripStatusLabel
     Friend WithEvents ProgressoLabel As ToolStripStatusLabel
+    Friend WithEvents EmailsToolStripMenuItem2 As ToolStripMenuItem
 End Class
